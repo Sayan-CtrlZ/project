@@ -15,29 +15,42 @@ import { Leaderboard } from './pages/Leaderboard';
 import { PowerUpShop } from './pages/PowerUpShop';
 import { BattlePass } from './pages/BattlePass';
 import { PvpQuiz } from './pages/PvpQuiz';
+import { AuthPage } from './pages/AuthPage';
 
 const App: React.FC = () => {
+  const isAuthenticated = !!localStorage.getItem('eduq_user');
+
   return (
     <Router>
-      <DailyLoginModal />
-      <Layout>
+      {isAuthenticated ? (
+        <>
+          <DailyLoginModal />
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/notebook" element={<Notebook />} />
+              <Route path="/code" element={<CodingGround />} />
+              <Route path="/tutor" element={<AvatarTutor />} />
+              <Route path="/quizzes" element={<Quizzes />} />
+              <Route path="/quests" element={<Quests />} />
+              <Route path="/achievements" element={<Achievements />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/shop" element={<PowerUpShop />} />
+              <Route path="/battlepass" element={<BattlePass />} />
+              <Route path="/pvp" element={<PvpQuiz />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/auth" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
+        </>
+      ) : (
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/notebook" element={<Notebook />} />
-          <Route path="/code" element={<CodingGround />} />
-          <Route path="/tutor" element={<AvatarTutor />} />
-          <Route path="/quizzes" element={<Quizzes />} />
-          <Route path="/quests" element={<Quests />} />
-          <Route path="/achievements" element={<Achievements />} />
-          <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/shop" element={<PowerUpShop />} />
-          <Route path="/battlepass" element={<BattlePass />} />
-          <Route path="/pvp" element={<PvpQuiz />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="*" element={<Navigate to="/auth" replace />} />
         </Routes>
-      </Layout>
+      )}
     </Router>
   );
 };

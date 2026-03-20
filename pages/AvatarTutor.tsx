@@ -75,24 +75,32 @@ export const AvatarTutor: React.FC = () => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false;
-      recognitionRef.current.interimResults = false;
+      recognitionRef.current.continuous = true;
+      recognitionRef.current.interimResults = true;
+      recognitionRef.current.maxAlternatives = 1;
       recognitionRef.current.lang = selectedVoiceLanguage;
-
-      recognitionRef.current.onstart = () => setIsListening(true);
       
       recognitionRef.current.onresult = async (event: any) => {
-        const text = event.results[0][0].transcript;
-        setIsListening(false);
-        handleUserMessage(text, 'voice');
+        const lastResultIndex = event.results.length - 1;
+        const result = event.results[lastResultIndex];
+        if (result.isFinal) {
+          const text = result[0].transcript;
+          handleUserMessage(text, 'voice');
+        }
       };
       
       recognitionRef.current.onerror = (event: any) => {
         console.error("Speech error", event);
-        setIsListening(false);
       };
 
-      recognitionRef.current.onend = () => setIsListening(false);
+      recognitionRef.current.onend = () => {
+        setIsListening((prev) => {
+          if (prev) {
+            try { recognitionRef.current.start(); } catch (e) {}
+          }
+          return prev;
+        });
+      };
     }
   }, [selectedVoiceLanguage]);
 
@@ -181,8 +189,10 @@ export const AvatarTutor: React.FC = () => {
 
   const toggleListening = () => {
     if (isListening) {
+      setIsListening(false);
       recognitionRef.current?.stop();
     } else {
+      setIsListening(true);
       recognitionRef.current?.start();
     }
   };
