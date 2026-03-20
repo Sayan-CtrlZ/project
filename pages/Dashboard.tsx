@@ -303,6 +303,7 @@ export const Dashboard: React.FC = () => {
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
+            <img src="/logo.png" alt="EduQ" className="w-3 h-3 object-contain" />
             <span className="text-[9px] font-mono text-cyan-600 tracking-widest uppercase animate-pulse">● SYSTEM ONLINE</span>
             <span className="text-[9px] font-mono text-gray-700">/ EDUQ FIELD OPS /</span>
           </div>

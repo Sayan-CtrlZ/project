@@ -44,6 +44,10 @@ export const DailyLoginModal: React.FC = () => {
             >
               <X size={24} />
             </button>
+
+            <div className="mb-2">
+              <img src="/logo.png" alt="EduQ Logo" className="w-16 h-16 object-contain" />
+            </div>
             
             {/* Header */}
             <div className="flex items-center gap-3 mb-6">
