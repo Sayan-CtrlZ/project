@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Code, Bot, PieChart, Settings, LogOut, ClipboardList, Target, X } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Code, Bot, PieChart, Settings, LogOut, ClipboardList, Target, X, Crown, Swords } from 'lucide-react';
 import { APP_NAME } from '../constants';
 
 interface SidebarProps {
@@ -18,6 +18,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
     { icon: ClipboardList, label: 'Quizzes', path: '/quizzes' },
     { icon: Bot, label: 'AI Tutor', path: '/tutor' },
     { icon: Target, label: 'Quests', path: '/quests' },
+    { icon: Crown, label: 'Battle Pass', path: '/battlepass' },
+    { icon: Swords, label: 'PvP Challenge', path: '/pvp' },
     { icon: PieChart, label: 'Analytics', path: '/analytics' },
   ];
 
