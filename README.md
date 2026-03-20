@@ -1,199 +1,149 @@
-# NEURONEX
+# Project
 
-An AI-powered learning platform that combines interactive coding, smart note-taking, and personalized tutoring to enhance your programming journey.
+A modern TypeScript web application built with **React + Vite**, styled with **Tailwind CSS**, and organized into reusable feature folders (`components`, `pages`, `hooks`, `services`, and `backend`).
 
-## Features
+## Repository
 
-- **Dashboard**: Track your learning progress, streaks, and analytics
-- **Smart Notebook**: AI-enhanced note-taking with automatic summarization and tagging
-- **Coding Ground**: Interactive code editor with AI-powered analysis and feedback
-- **Avatar Tutor**: Personalized AI tutor for real-time learning assistance
-- **Newsletter**: Stay updated with the latest features and learning resources
+- **Repo:** `Srv99x/project`
+- **Primary stack:** TypeScript, React, Vite, Tailwind CSS
+- **Deployment config present:** `vercel.json`
+
+---
 
 ## Tech Stack
 
-### Frontend
-- React 19 with TypeScript
-- Vite for fast development and building
-- React Router for navigation
-- Lucide React for icons
-- Recharts for data visualization
-- Google Generative AI (Gemini) integration
+- **Frontend Framework:** React (TypeScript)
+- **Build Tool:** Vite
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+- **Package Manager:** npm (`package-lock.json` present)
 
-### Backend
-- FastAPI (Python)
-- Pydantic for data validation
-- Uvicorn ASGI server
-
-## Prerequisites
-
-- Node.js (v18 or higher)
-- Python 3.8+ (for backend)
-- Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-
-## Installation & Setup
-
-### Frontend Setup
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/mr-irfan1/NEURONEX.git
-   cd NEURONEX
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Create a `.env.local` file in the root directory:
-   ```bash
-   # Preferred for frontend (Vite-exposed)
-   VITE_GEMINI_API_KEY=your_gemini_api_key_here
-
-   # Optional model overrides
-   VITE_GEMINI_FLASH_MODEL=gemini-2.5-flash
-   VITE_GEMINI_PRO_MODEL=gemini-2.5-pro
-   ```
-
-   Note: `GEMINI_API_KEY` is still supported for backward compatibility.
-
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-5. Open your browser and navigate to `http://localhost:5173`
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Install Python dependencies:
-   ```bash
-   pip install fastapi uvicorn pydantic[email] httpx
-   ```
-
-3. Run the backend server:
-   ```bash
-   python main.py
-   ```
-
-4. Backend API will be available at `http://localhost:8000`
-
-### Cloud Code Runner Setup (onlinecompiler.io)
-
-The Coding Ground terminal runs real code through the backend using onlinecompiler.io.
-
-Set backend environment variables before running FastAPI:
-
-```bash
-CODE_EXEC_TIMEOUT=15
-FRONTEND_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
-
-# onlinecompiler.io endpoint
-ONLINECOMPILER_API_URL=https://api.onlinecompiler.io/api/run-code-sync/
-
-# Required API key
-ONLINECOMPILER_API_KEY=your_onlinecompiler_api_key
-```
-
-Request format sent by backend:
-
-```json
-{
-   "compiler": "python-3.14",
-   "code": "print(\"Hello\")",
-   "input": ""
-}
-```
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-
-## Deploy To Vercel
-
-This repo is configured for a full Vercel deploy:
-- Frontend (Vite React) is built from `package.json`
-- Backend (FastAPI) is served from `backend/main.py`
-- API routes are available under `/api/*`
-
-### 1. Import project into Vercel
-
-1. Open Vercel dashboard and import this repository.
-2. Keep root directory as project root.
-3. Framework can remain auto-detected.
-
-### 2. Set environment variables in Vercel
-
-Frontend variables:
-- `VITE_GEMINI_API_KEY`
-- `VITE_GEMINI_FLASH_MODEL` (optional, default `gemini-2.5-flash`)
-- `VITE_GEMINI_PRO_MODEL` (optional, default `gemini-2.5-pro`)
-- `VITE_API_BASE_URL` (optional; leave empty to use same-origin `/api`)
-
-Backend variables:
-- `ONLINECOMPILER_API_KEY` (required for code execution)
-- `ONLINECOMPILER_API_URL` (optional, default already set in backend)
-- `CODE_EXEC_TIMEOUT` (optional, e.g. `15`)
-- `FRONTEND_ORIGINS` (optional; can include your Vercel domains if needed)
-
-### 3. Deploy
-
-Trigger deploy from Vercel UI.
-
-Notes:
-- `vercel.json` contains routing for SPA pages and `/api/*` FastAPI handlers.
-- Python dependencies are installed from `backend/requirements.txt`.
+---
 
 ## Project Structure
 
+```text
+.
+├── App.tsx
+├── index.tsx
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── tailwind.config.ts
+├── vercel.json
+├── metadata.json
+├── types.ts
+├── constants.ts
+├── gamificationConstants.ts
+├── backend/
+├── components/
+├── constants/
+├── hooks/
+├── pages/
+├── public/
+└── services/
 ```
-NEURONEX/
-├── components/          # Reusable UI components
-│   ├── ui/             # Base UI components (Button, GlassCard)
-│   ├── Layout.tsx      # Main layout wrapper
-│   └── Sidebar.tsx     # Navigation sidebar
-├── pages/              # Application pages
-│   ├── Dashboard.tsx   # Main dashboard
-│   ├── Notebook.tsx    # Note-taking interface
-│   ├── CodingGround.tsx # Code editor
-│   ├── AvatarTutor.tsx # AI tutor chat
-│   └── Settings.tsx    # User settings
-├── services/           # API and service integrations
-│   ├── aiService.ts    # Gemini AI integration
-│   └── newsletterService.ts # Newsletter API
-├── backend/            # FastAPI backend
-│   └── main.py        # API endpoints
-├── App.tsx            # Main app component
-├── types.ts           # TypeScript type definitions
-└── constants.ts       # App constants
 
+### Key Files
+
+- `App.tsx` — Root application component.
+- `index.tsx` — React app bootstrap/entry point.
+- `index.html` — Vite HTML template and root mount target.
+- `types.ts` — Shared TypeScript type definitions.
+- `constants.ts` / `gamificationConstants.ts` — App and domain-specific constants.
+- `vite.config.ts` — Vite build/dev server configuration.
+- `tailwind.config.ts` — Tailwind theme/content setup.
+- `vercel.json` — Vercel deployment and routing configuration.
+
+### Main Directories
+
+- `components/` — Reusable UI components.
+- `pages/` — Page-level or route-level views.
+- `hooks/` — Custom React hooks.
+- `services/` — API/data/business-logic helpers.
+- `backend/` — Backend/server-side code (if used by this app).
+- `public/` — Static assets served directly.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** 18+ (recommended)
+- **npm** 9+
+
+### Installation
+
+```bash
+npm install
 ```
 
-## API Endpoints
+### Run in Development
 
-### Newsletter Subscription
-- **POST** `/api/newsletter/subscribe`
-  - Subscribe to newsletter updates
-  - Request body: `{ "email": "user@example.com" }`
+```bash
+npm run dev
+```
+
+Then open the local URL shown in your terminal (typically `http://localhost:5173`).
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+---
+
+## Scripts
+
+> Available scripts are defined in `package.json`. Common Vite scripts are typically:
+
+- `npm run dev` — Start development server.
+- `npm run build` — Build for production.
+- `npm run preview` — Preview production build locally.
+
+(If your `package.json` differs, treat it as the source of truth.)
+
+---
+
+## Development Notes
+
+- Keep shared interfaces/types in `types.ts` (or split by domain as the codebase grows).
+- Keep constants centralized (`constants.ts`, `gamificationConstants.ts`) to avoid magic values in components.
+- Prefer colocating page-specific UI in `pages/` and reusable primitives in `components/`.
+- Keep network/data logic in `services/` to maintain clean component boundaries.
+
+---
+
+## Deployment
+
+The repository includes `vercel.json`, indicating intended deployment on **Vercel**.
+
+Typical deployment options:
+
+1. Import the repository into Vercel.
+2. Ensure build settings match your `package.json` scripts.
+3. Deploy and configure environment variables (if required by services/backend).
+
+---
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Create a feature branch.
+2. Make focused changes with clear commit messages.
+3. Run build/tests/lint checks locally.
+4. Open a pull request with a concise summary.
+
+---
 
 ## License
 
-This project is open source and available under the MIT License.
-
-## Contact
-
-For questions or support, please open an issue on GitHub.
-
-THANK YOU
+Add your project license here (e.g., MIT, Apache-2.0, proprietary).

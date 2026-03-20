@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Code, Bot, PieChart, Settings, LogOut, ClipboardList, Target, X } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Code, Bot, PieChart, Settings, LogOut, ClipboardList, Target, X, Crown, Swords } from 'lucide-react';
 import { APP_NAME } from '../constants';
 
 interface SidebarProps {
@@ -18,6 +18,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
     { icon: ClipboardList, label: 'Quizzes', path: '/quizzes' },
     { icon: Bot, label: 'AI Tutor', path: '/tutor' },
     { icon: Target, label: 'Quests', path: '/quests' },
+    { icon: Crown, label: 'Battle Pass', path: '/battlepass' },
+    { icon: Swords, label: 'PvP Challenge', path: '/pvp' },
     { icon: PieChart, label: 'Analytics', path: '/analytics' },
   ];
 
@@ -32,11 +34,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
   return (
     <aside className={`fixed left-0 top-0 h-screen bg-background/68 backdrop-blur-xl border-r border-white/10 flex flex-col z-50 transition-all duration-300 ${isOpen ? 'w-64' : 'w-20'} overflow-hidden`}>
       <div className="p-6 flex items-center justify-center gap-3 relative">
-        <div className="w-8 h-8 rounded bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-          <span className="text-white/90 font-bold text-lg">N</span>
+        <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 overflow-hidden">
+          <img src="/logo.png" alt="EduQ Logo" className="w-full h-full object-contain" />
         </div>
         <div className={`flex-1 flex items-center gap-3 transition-all duration-300 overflow-hidden ${isOpen ? 'opacity-100 w-auto' : 'opacity-0 w-0'}`}>
-          <span className="text-xl font-bold tracking-tight text-white whitespace-nowrap">{APP_NAME}</span>
+          <span className="text-xl font-bold tracking-tight text-white whitespace-nowrap">EduQ</span>
         </div>
         <button 
           onClick={onClose}

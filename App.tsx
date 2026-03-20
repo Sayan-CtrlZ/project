@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import { DailyLoginModal } from './components/DailyLoginModal';
 import { Dashboard } from './pages/Dashboard';
 import { Analytics } from './pages/Analytics';
 import { Quizzes } from './pages/Quizzes';
@@ -12,10 +13,13 @@ import { Quests } from './pages/Quests';
 import { Achievements } from './pages/Achievements';
 import { Leaderboard } from './pages/Leaderboard';
 import { PowerUpShop } from './pages/PowerUpShop';
+import { BattlePass } from './pages/BattlePass';
+import { PvpQuiz } from './pages/PvpQuiz';
 
 const App: React.FC = () => {
   return (
     <Router>
+      <DailyLoginModal />
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
@@ -27,6 +31,8 @@ const App: React.FC = () => {
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/shop" element={<PowerUpShop />} />
+          <Route path="/battlepass" element={<BattlePass />} />
+          <Route path="/pvp" element={<PvpQuiz />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="*" element={<Navigate to="/" replace />} />
